@@ -1,0 +1,15 @@
+.rowStyle{
+    border-bottom: 1px grey solid;
+}
+
+.headerStyle{
+    border-bottom: 3px grey solid;
+    border-top: 1px grey solid;
+}
+.productsArea{
+    border-bottom: 3px grey solid;
+    overflow: auto;
+}
+.actionButtons{
+    bottom:0;
+}

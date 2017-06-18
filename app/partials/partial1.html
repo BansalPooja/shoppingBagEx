@@ -1,0 +1,55 @@
+
+<h2>YOUR SHOPPING BAG</h2>
+<div class='headerStyle' layout='row' layout-padding>
+    <div flex='70'>
+        {{cartItems.productsInCart.length}} ITEMS
+    </div>
+    <div flex='10' hide-xs>
+        SIZE
+    </div>
+    <div flex='10' hide-xs>
+        QTY
+    </div>
+    <div flex='10' hide-xs>
+        PRICE
+    </div>
+</div>
+
+<div class='rowStyle' ng-repeat='product in cartItems.productsInCart'  layout-xs='column' layout='row' layout-padding>
+    <div flex='70' flex-xs='100' layout='row'>
+        <div flex='40'>
+            <md-card>
+                <img src="/assets/T{{product.p_id}}.jpg" class="md-card-image" alt="">
+            </md-card>
+        </div>
+        <div flex='60' layout-margin>
+            <h5><strong>{{product.p_variation | uppercase}} {{product.p_name | uppercase}}</strong></h5>
+            <p>Style #:{{product.p_style | uppercase}}</p>
+            <span>Colour: </span><span class="text-capitalize">{{product.p_selected_color.name}}</span>
+            <p hide-gt-xs>Size: {{product.p_selected_size.code | uppercase}}</p>
+            <p hide-xs class='actionButtons'> EDIT | REMOVE | SAVE FOR LATER </p>
+        </div>
+    </div>
+    <div flex='10' hide-xs>
+       {{product.p_selected_size.code}} 
+    </div>
+    <div flex='10' flex-xs='100' flex-offset-xs='40'>
+        <label hide-gt-xs>QTY: </label><input flex='80' flex-xs='20' type="text" value ='{{product.p_quantity}}'/>
+    </div>
+    <div flex='10' flex-xs='100' flex-offset-xs='40'>
+        <span id="currency-default">{{product.p_price | currency}}</span>
+    </div>
+    
+     <span hide-gt-xs > EDIT | REMOVE | SAVE FOR LATER</span>
+</div>
+
+<div layout='row' layout-sm='column' layout-xs='column'>
+    <div flex='40' layout='row' layout-sm='column' layout-xs='column'></div>
+    <div flex='60' flex-sm='100' flex-xs='100' layout='column' layout-sm='column' layout-xs='column'>
+        <div flex layout='row' layout-padding>
+            <span>ENTER PROMOTON CODE OR GIFT CARD</span>
+            <input flex type='text'/>
+            <button type='submit'>APPLY</button>
+        </div>
+    </div>
+</div>
