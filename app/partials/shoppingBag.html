@@ -1,0 +1,87 @@
+<div flex='70' flex-xs='100' layout-align='center center'>
+
+    <h2>
+        YOUR SHOPPING BAG</h2>
+    <div class='headerStyle' layout='row' layout-padding>
+        <div flex='70'>
+            {{invoice.count}} ITEMS
+        </div>
+        <div flex='10' hide-xs>
+            SIZE
+        </div>
+        <div flex='10' hide-xs>
+            QTY
+        </div>
+        <div flex='10' hide-xs>
+            PRICE
+        </div>
+    </div>
+
+    <div class='rowStyle' ng-repeat='product in cartItems.productsInCart' layout-xs='column' layout='row' layout-padding>
+        <div flex='70' flex-xs='100' layout='row'>
+            <div flex='40'>
+                <md-card>
+                    <img src="/assets/T{{product.p_id}}.jpg" class="md-card-image" alt="">
+                </md-card>
+            </div>
+            <div flex='60' layout-margin>
+                <h5><strong>{{product.p_variation | uppercase}} {{product.p_name | uppercase}}</strong></h5>
+                <p>Style #:{{product.p_style | uppercase}}</p>
+                <span>Colour: </span><span class="text-capitalize">{{product.p_selected_color.name}}</span>
+                <p hide-gt-xs>Size: {{product.p_selected_size.code | uppercase}}</p>
+                <p hide-xs class='actionButtons md-body-2'> <a ng-click='showEditDialog($event, product)'>EDIT</a> | <a ng-click='removeFromBag($event, product)'>REMOVE</a> | SAVE FOR LATER </p>
+            </div>
+        </div>
+        <div flex='10' hide-xs>
+            {{product.p_selected_size.code || uppercase}}
+        </div>
+        <div flex='10' flex-xs='100' flex-offset-xs='40'>
+            <label hide-gt-xs>QTY: </label><input disabled ng-model='product.p_quantity' flex='80' flex-xs='20' type="number" value='{{product.p_quantity}}' />
+        </div>
+        <div flex='10' flex-xs='100' flex-offset-xs='40'>
+            <span id="currency-default">{{product.p_price | currency}}</span>
+        </div>
+
+        <span hide-gt-xs class='actionButtons md-body-2'> <a ng-click='showEditDialog($event, product)'>EDIT</a>| <a ng-click='removeFromBag($event, product)'>REMOVE</a> | SAVE FOR LATER</span>
+    </div>
+
+    <div layout='row' layout-sm='column' layout-xs='column' layout-padding>
+        <div flex='40' layout='column' layout-margin>
+            <p>Need help or have questions?</p>
+            <p>Call customer service</p>
+            <p>See Return & Exchange Policy</p>
+        </div>
+        <div flex='60' flex-sm='100' flex-xs='100' layout='column' layout-sm='column' layout-xs='column' layout-padding>
+            <div class='borderStyle' flex layout='row'>
+                <span>ENTER PROMOTON CODE OR GIFT CARD</span>
+                <input flex='30' type='text' />
+                <button type='submit'>APPLY</button>
+            </div>
+
+            <div flex layout='row'>
+                <h5 flex='70'>SUBTOTAL</h5>
+                <span flex='30'>{{ invoice.subtotal | currency }}</span>
+            </div>
+            <div layout='row' flex ng-if="invoice.discountRate > 0">
+                <h5 flex='70'>PROMOTIONAL CODE JF{{invoice.discountRate}} APPLIED </h5>
+                <span flex='30'> - {{invoice.discount | currency}}</span>
+            </div>
+            <div layout='row' flex>
+                <h5 flex='70'>ESTIMATED SHIPPING </h5>
+                <span flex='30'>FREE</span>
+            </div>
+            <div class='borderStyle' flex layout='row'>
+                <h5 flex='70'>ESTIMATED TOTAL
+                    </br> <span class='md-caption'>Tax will be applied during checkout</span>
+                </h5>
+
+                <span flex='30'> <strong>{{invoice.total | currency}}</strong></span>
+            </div>
+            <div flex layout='row' layout-align='end center'>
+                <md-button class="md-button md-primary md-raised">CHECKOUT
+                </md-button>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,48 @@
+<md-dialog flex='60'>
+    <form ng-cloak>
+        <!--
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Mango (Fruit)</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="cancel()">
+          <md-icon md-svg-src="img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>-->
+
+        <md-dialog-content>
+            <div class="md-dialog-content">
+                <div layout='row' flex layout-xs='column'>
+                    <div flex-order-xs='1' flex='40' flex-xs='100' layout='column' layout-align='center center' layout-margin>
+                        <span>{{productDetails.p_name | uppercase}}</span>
+                        <span>{{productDetails.c_currency | currency}}<h3>{{productDetails.p_price | currency}}</h3></span>
+                        <div layout='row'>
+                            <md-input-container class="md-block" flex='50'>
+                                <label>Size</label>
+                                <md-select ng-model="productDetails.p_selected_size.code">
+                                    <md-option ng-repeat="availableSize in productDetails.p_available_options.sizes" value="{{availableSize.code}}">
+                                        {{availableSize.code | uppercase}}
+                                    </md-option>
+                                </md-select>
+
+                            </md-input-container>
+                            <md-input-container class="md-block" flex='50'>
+                                <label>QTY</label>
+                                <input type='number' ng-model='productDetails.p_quantity'></input>
+                            </md-input-container>
+                        </div>
+                        <md-button class="md-primary md-raised" ng-click="updateBag($event)">
+                            EDIT
+                        </md-button>
+                    </div>
+                    <div flex-order-xs='-1' flex='60' flex-xs='100' layout-xs='column' layout='row' layout-align='center center'>
+                        <md-card flex='60' flex-xs='100'>
+                            <img src="/assets/T{{productDetails.p_id}}.jpg" class="md-card-image" alt="">
+                        </md-card>
+                    </div>
+                </div>
+            </div>
+        </md-dialog-content>
+    </form>
+</md-dialog>
